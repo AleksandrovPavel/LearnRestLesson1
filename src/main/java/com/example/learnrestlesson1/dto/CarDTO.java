@@ -12,4 +12,21 @@ public class CarDTO {
     @NotEmpty(message = "Серийный номер автомобиля не должен быть пустым")
     @Size(min = 7, message = "Серийный номер автомобиля должен быть минимум 7 символов")
     private String series;
+
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
 }

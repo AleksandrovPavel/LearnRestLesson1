@@ -11,7 +11,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String model;
 
     private String series;
 
@@ -22,9 +22,9 @@ public class Car {
     public Car() {
     }
 
-    public Car(Long id, String name, String series, Person person) {
+    public Car(Long id, String model, String series, Person person) {
         this.id = id;
-        this.name = name;
+        this.model = model;
         this.series = series;
         this.person = person;
     }
@@ -37,12 +37,12 @@ public class Car {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getModel() {
+        return model;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getSeries() {
@@ -65,7 +65,7 @@ public class Car {
     public String toString() {
         return "Car{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", model='" + model + '\'' +
                 ", series='" + series + '\'' +
                 '}';
     }
@@ -75,11 +75,11 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Objects.equals(id, car.id) && Objects.equals(name, car.name) && Objects.equals(series, car.series);
+        return Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(series, car.series);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, series);
+        return Objects.hash(id, model, series);
     }
 }

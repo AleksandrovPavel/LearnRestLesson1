@@ -1,5 +1,6 @@
 package com.example.learnrestlesson1.service;
 
+import com.example.learnrestlesson1.model.Car;
 import com.example.learnrestlesson1.model.Person;
 
 import java.util.List;
@@ -14,7 +15,12 @@ public interface PersonService {
 
     Optional<Person> findByEmail(String email);
 
-    void updatePerson(Long personId);
+    void updatePerson(Long personId, Person person);
 
-    void deletePerson()
+    void deletePerson(Long personId);
+
+    List<Car> getInPersonCars(Long personId);
+
+    void saveCarToPerson(Long personId, Car car);
+
 }

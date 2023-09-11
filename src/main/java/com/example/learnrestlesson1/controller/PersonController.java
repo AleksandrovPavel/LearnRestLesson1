@@ -1,6 +1,8 @@
 package com.example.learnrestlesson1.controller;
 
+import com.example.learnrestlesson1.dto.CarDTO;
 import com.example.learnrestlesson1.dto.PersonDTO;
+import com.example.learnrestlesson1.model.Car;
 import com.example.learnrestlesson1.model.Person;
 import com.example.learnrestlesson1.service.PersonService;
 import com.example.learnrestlesson1.util.*;
@@ -21,40 +23,88 @@ public class PersonController {
     private final PersonService personService;
     private final ModelMapper modelMapper;
     private final PersonValidator personValidator;
+    private final CarValidator carValidator;
 
     public PersonController(PersonService personService,
                             ModelMapper modelMapper,
-                            PersonValidator personValidator) {
+                            PersonValidator personValidator, CarValidator carValidator) {
         this.personService = personService;
         this.modelMapper = modelMapper;
         this.personValidator = personValidator;
+        this.carValidator = carValidator;
     }
 
     @GetMapping()
-    public List<PersonDTO> getAllPerson() {
-        return personService.getAllPerson()
+    public ResponseEntity<List<PersonDTO>> getAllPersons() {
+        return new ResponseEntity<>(personService.getAllPerson()
                 .stream()
                 .map(this::convertToPersonDTO)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public PersonDTO getPersonById(@PathVariable("id") Long id) {
-        return convertToPersonDTO(personService.getPersonById(id));
+    @GetMapping("/{person-id}")
+    public ResponseEntity<PersonDTO> getPersonById(@PathVariable("person-id") Long personId) {
+        return new ResponseEntity<>(convertToPersonDTO(personService.getPersonById(personId)),
+                HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create (@RequestBody @Valid PersonDTO personDTO,
-                                              BindingResult bindingResult) {
+    public ResponseEntity<HttpStatus> savePerson(@RequestBody @Valid PersonDTO personDTO,
+                                                 BindingResult bindingResult) {
 
         Person personToAll = convertToPerson(personDTO);
         personValidator.validate(personToAll, bindingResult);
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             ErrorsUtil.returnErrorsToClient(bindingResult);
         }
 
         personService.savePerson(personToAll);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/{person-id}/update_person")
+    public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid PersonDTO personDTO,
+                                                   BindingResult bindingResult,
+                                                   @PathVariable("person-id") Long personId) {
+
+        Person personToAll = convertToPerson(personDTO);
+        if (bindingResult.hasErrors()) {
+            ErrorsUtil.returnErrorsToClient(bindingResult);
+        }
+        personService.updatePerson(personId, personToAll);
+        return ResponseEntity.ok(HttpStatus.OK);
+
+    }
+
+    @PostMapping("/{person-id}/new_car_to_person")
+    public ResponseEntity<HttpStatus> newCarToPerson(@RequestBody @Valid CarDTO carDTO,
+                                                     BindingResult bindingResult,
+                                                     @PathVariable("person-id") Long personId) {
+
+        Car carToAll = convertToCar(carDTO);
+        carValidator.validate(carToAll, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            ErrorsUtil.returnErrorsToClient(bindingResult);
+        }
+        personService.saveCarToPerson(personId, carToAll);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping("/{person-id}/get_in_person_cars")
+    public ResponseEntity<List<CarDTO>> getInPersonCars(@PathVariable("person-id") Long personId) {
+        return new ResponseEntity<>(personService.getInPersonCars(personId)
+                .stream()
+                .map(this::convertToCarDTO)
+                .collect(Collectors.toList()),
+                HttpStatus.OK);
+    }
+
+    @PostMapping("/{person-id}/delete_person")
+    public ResponseEntity<HttpStatus> deletePerson(@PathVariable("person-id") Long personId) {
+        personService.deletePerson(personId);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -74,12 +124,20 @@ public class PersonController {
     }
 
     private Person convertToPerson(PersonDTO personDTO) {
-        return modelMapper.map(personDTO,Person.class);
+        return modelMapper.map(personDTO, Person.class);
     }
 
     private PersonDTO convertToPersonDTO(Person person) {
         return modelMapper.map(person, PersonDTO.class);
 
+    }
+
+    private Car convertToCar(CarDTO carDTO) {
+        return modelMapper.map(carDTO, Car.class);
+    }
+
+    private CarDTO convertToCarDTO(Car car) {
+        return modelMapper.map(car, CarDTO.class);
     }
 
 }
