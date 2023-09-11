@@ -45,7 +45,7 @@ public class CarController {
                 HttpStatus.OK);
     }
 
-    @PostMapping("/{car-id}/update_car")
+    @PutMapping ("/{car-id}/update_car")
     public ResponseEntity<HttpStatus> updateCar(@RequestBody @Valid CarDTO carDTO,
                                                 BindingResult bindingResult,
                                                 @PathVariable("car-id") Long carId) {
@@ -58,7 +58,7 @@ public class CarController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/{car-id}/delete_car")
+    @DeleteMapping("/{car-id}/delete_car")
     public ResponseEntity<HttpStatus> deleteCar(@PathVariable("car-id") Long carId) {
         carService.deleteCar(carId);
         return ResponseEntity.ok(HttpStatus.OK);

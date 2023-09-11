@@ -64,7 +64,7 @@ public class PersonController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/{person-id}/update_person")
+    @PutMapping("/{person-id}/update_person")
     public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid PersonDTO personDTO,
                                                    BindingResult bindingResult,
                                                    @PathVariable("person-id") Long personId) {
@@ -102,7 +102,7 @@ public class PersonController {
                 HttpStatus.OK);
     }
 
-    @PostMapping("/{person-id}/delete_person")
+    @DeleteMapping("/{person-id}/delete_person")
     public ResponseEntity<HttpStatus> deletePerson(@PathVariable("person-id") Long personId) {
         personService.deletePerson(personId);
         return ResponseEntity.ok(HttpStatus.OK);
