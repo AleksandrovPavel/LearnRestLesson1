@@ -67,7 +67,7 @@ public class CarController {
     @GetMapping("/{car-id}/get_in_car_person")
     public ResponseEntity<PersonDTO> getInCarPerson(@PathVariable("car-id") Long carId) {
         return new ResponseEntity<>(convertToPersonDTO(carService.getInCarPerson(carId)),
-        HttpStatus.OK);
+                HttpStatus.OK);
     }
 
 

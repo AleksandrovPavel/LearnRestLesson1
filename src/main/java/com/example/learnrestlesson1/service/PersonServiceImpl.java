@@ -80,11 +80,11 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public void saveCarToPerson(Long personId,Car car) {
+    public void saveCarToPerson(Long personId, Car car) {
         Person person = personRepository.findById(personId)
                 .orElseThrow(PersonNotFoundException::new);
-       car.setPerson(person);
-       carRepository.save(car);
+        car.setPerson(person);
+        carRepository.save(car);
     }
 
 

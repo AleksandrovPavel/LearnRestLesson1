@@ -15,7 +15,6 @@ public class PersonValidator implements Validator {
         this.personService = personService;
     }
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return Person.class.equals(clazz);
@@ -25,7 +24,7 @@ public class PersonValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
 
-        if(personService.findByEmail(person.getEmail()).isPresent()) {
+        if (personService.findByEmail(person.getEmail()).isPresent()) {
             errors.rejectValue("email", "Адрес электронной почты уже существует");
         }
     }
