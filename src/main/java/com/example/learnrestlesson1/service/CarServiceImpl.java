@@ -35,6 +35,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    @Transactional
     public void updateCar(Long carId, Car car) {
         Car carUpdate = carRepository.findById(carId)
                 .orElseThrow(CarNotFoundException::new);
@@ -67,6 +68,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<Car> findBySeries(String series) {
         return carRepository.findBySeries(series);
     }

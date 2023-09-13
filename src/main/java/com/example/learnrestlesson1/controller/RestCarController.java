@@ -19,13 +19,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/car")
-public class CarController {
+public class RestCarController {
 
     private final CarService carService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CarController(CarService carService, ModelMapper modelMapper) {
+    public RestCarController(CarService carService, ModelMapper modelMapper) {
         this.carService = carService;
         this.modelMapper = modelMapper;
     }

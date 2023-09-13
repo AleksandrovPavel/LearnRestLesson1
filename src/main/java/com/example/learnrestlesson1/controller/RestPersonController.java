@@ -18,16 +18,16 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/person")
-public class PersonController {
+public class RestPersonController {
 
     private final PersonService personService;
     private final ModelMapper modelMapper;
     private final PersonValidator personValidator;
     private final CarValidator carValidator;
 
-    public PersonController(PersonService personService,
-                            ModelMapper modelMapper,
-                            PersonValidator personValidator, CarValidator carValidator) {
+    public RestPersonController(PersonService personService,
+                                ModelMapper modelMapper,
+                                PersonValidator personValidator, CarValidator carValidator) {
         this.personService = personService;
         this.modelMapper = modelMapper;
         this.personValidator = personValidator;
