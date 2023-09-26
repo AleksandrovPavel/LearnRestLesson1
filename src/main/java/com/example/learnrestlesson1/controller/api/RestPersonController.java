@@ -1,4 +1,4 @@
-package com.example.learnrestlesson1.controller;
+package com.example.learnrestlesson1.controller.api;
 
 import com.example.learnrestlesson1.dto.CarDTO;
 import com.example.learnrestlesson1.dto.PersonDTO;
@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person")
 public class RestPersonController {
 
     private final PersonService personService;
@@ -64,7 +65,7 @@ public class RestPersonController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/{person-id}/update_person")
+    @PutMapping("/{person-id}")
     public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid PersonDTO personDTO,
                                                    BindingResult bindingResult,
                                                    @PathVariable("person-id") Long personId) {
@@ -102,7 +103,7 @@ public class RestPersonController {
                 HttpStatus.OK);
     }
 
-    @DeleteMapping("/{person-id}/delete_person")
+    @DeleteMapping("/{person-id}")
     public ResponseEntity<HttpStatus> deletePerson(@PathVariable("person-id") Long personId) {
         personService.deletePerson(personId);
         return ResponseEntity.ok(HttpStatus.OK);

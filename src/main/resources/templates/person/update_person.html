@@ -10,34 +10,23 @@
 <a href="/logout">Выход</a>
 <br>
 <br>
-<a href="/admin/person">Ко всем людям</a>
+<a href="/person">Ко всем людям</a>
 <br>
-<a href="/admin/car">Ко всем автомобилям</a>
+<a href="/car">Ко всем автомобилям</a>
 <br>
 <br>
 <h4>Обновить данные человека</h4>
 <br>
 <br>
-<form th:method="POST" th:action="@{/admin/person/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="firstName">Имя</label>
-    <input type="text" th:field="*{firstName}" id="firstName"/>
-    <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name error</div>
-    <br>
-    <laber for="lastName">Фамилия</laber>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-    <div style="color: red"  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name error</div>
-    <br>
-    <p>
-        <label> Roles:
-            <input type="checkbox" name="roles"
-                   th:each="role : ${roles}"
-                   th:text="${role.getName()}"
-                   th:value="${role.getId()}"
-                   th:field="*{roles}"
-                   th:checkbox="${role.getName() == person.getRoles()}"
-            />
-        </label>
-    </p>
+<form>
+    <div>
+        <label for="firstName">Имя</label>
+        <input type="text" name="firstName" id="firstName" placeholder="Имя" autocomplete="off">
+    </div>
+    <div>
+        <label for="lastName">Фамилия</label>
+        <input type="text" name="lastName" id="lastName" placeholder="Фамилия" autocomplete="off">
+    </div>
     <br>
     <br>
     <input type="submit" value="Обновить">

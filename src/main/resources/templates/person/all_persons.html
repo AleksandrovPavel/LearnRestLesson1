@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+    <script src="/js/person/all_persons_js.js" defer></script>
     <title>Все люди</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/>
 </head>
 
 <body>
-
 <br>
-<a href="/logout">Выход</a>
-<br>
-<a href="/admin/car">Ко всем автомобилям</a>
+<a href="/car">Ко всем автомобилям</a>
 <br>
 <br>
 <h4>Список людей</h4>
@@ -19,27 +18,24 @@
 <br>
 <div>
     <table>
+        <thead>
         <tr>
             <th>Имя</th>
             <th>Фамилия</th>
+            <th>Email</th>
             <th>Перейти</th>
             <th>Удалить</th>
         </tr>
-        <tr th:each="all_persons : ${getAllPersons}">
-            <td th:utext="${all_persons.firstName}">Имя</td>
-            <td th:utext="${all_persons.getLastName}">Фамилия</td>
-            <td><a th:href="'/admin/person/' + ${all_persons.getId()}">Перейти</a></td>
-            <td><a
-                    th:href="'/admin/person/' + ${all_persons.getId()} + '/delete_person'">Удалить</a>
-            </td>
-        </tr>
+        </thead>
+        <tbody id="data-output"></tbody>
     </table>
 </div>
 
-<br/>
-<hr/>
+<br />
+<hr />
 
-<a href="/admin/person/new_person">Сохранить нового человека</a>
-<script src="/js/index.js"></script>
+
+<a href="/person/new_person">Сохранить нового человека</a>
 </body>
+
 </html>

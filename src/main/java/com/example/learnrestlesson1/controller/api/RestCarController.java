@@ -1,4 +1,4 @@
-package com.example.learnrestlesson1.controller;
+package com.example.learnrestlesson1.controller.api;
 
 import com.example.learnrestlesson1.dto.CarDTO;
 import com.example.learnrestlesson1.dto.PersonDTO;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/api/car")
 public class RestCarController {
 
     private final CarService carService;

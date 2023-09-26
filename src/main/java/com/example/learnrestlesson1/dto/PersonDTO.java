@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Size;
 
 public class PersonDTO {
 
+    private Long id;
+
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 25, message = "Длина имени должна составлять от 2 до 25 символов")
     private String firstName;
@@ -17,6 +19,14 @@ public class PersonDTO {
     @Email(message = "Адрес электронной почты нужно ввести корректно")
     @NotEmpty(message = "Адрес электронной почты не должен быть пустым")
     private String email;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
