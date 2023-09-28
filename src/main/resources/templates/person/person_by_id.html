@@ -41,7 +41,18 @@
 <br>
 <h4>Добавить автомобиль человеку</h4>
 <br>
-
+<form action="">
+    <div>
+        <label for="model">Модель</label>
+        <input type="text" name="model" id="model" placeholder="Модель" autocomplete="off">
+    </div>
+    <div>
+        <label for="series">Серийный номер</label>
+        <input type="text" name="series" id="series" placeholder="Серийный номер" autocomplete="off">
+    </div>
+    <br>
+    <button class="btn" type="submit">Сохранить</button>
+</form>
 
 
 <script th:inline="javascript">
@@ -49,5 +60,6 @@
 </script>
 <script src="/static/js/person/person_by_id_js.js"></script>
 <script src="/static/js/person/get_in_person_cars.js"></script>
+<script src="/static/js/person/new_сar_to_person.js"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@ async function start() {
                 <td>
                     <button class="button__edit" 
                             data-index=${person.id}
-                            data-type="editPerson">Редактировать
+                            data-type="editPerson">Перейти
                     </button>
                 </td>
                 <td>
@@ -44,7 +44,7 @@ allPerson.onclick = function (event) {
   if (type === "editPerson") {
     document.location.href = "http://localhost:8080/person/" + index;
   } else if (type === "deletePerson") {
-    const res = fetch(url + "/" + index, {
+    const res = fetch(urlPersons + "/" + index, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

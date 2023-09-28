@@ -17,21 +17,16 @@
 <br>
 <div>
     <table>
+        <thead>
         <tr>
             <th>Модель</th>
             <th>Серийный номер</th>
             <th>Перейти</th>
         </tr>
-        <tr th:each="all_cars : ${cars}">
-            <td th:utext="${all_cars.getModel()}">Модель</td>
-            <td th:utext="${all_cars.getSeries()}">Серийный номер</td>
-            <td> <a th:href="'/admin/car/' + ${all_cars.getId()}">Перейти</a></td>
-        </tr>
+        </thead>
+        <tbody id="data-output"></tbody>
     </table>
 </div>
-
-<br/>
-<hr/>
-
+<script src="/static/js/car/all_cars_js.js"> </script>
 </body>
 </html>
