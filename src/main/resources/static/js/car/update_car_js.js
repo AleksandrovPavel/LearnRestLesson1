@@ -17,16 +17,17 @@ start();
 
 
 document.querySelector("form").addEventListener("submit", evt => {
+
+    evt.preventDefault();
     let number = Number(id);
     const form = document.querySelector("form")
     let person = {
-        model: form.querySelector("[name='model']").value,
-        series: form.querySelector("[name='series']").value,
+        model: form.querySelector("[name='model']").value
     }
 
     try {
         fetch(urlCar + "/" + number, {
-            method: "PUT",
+            method: "PATCH",
             body: JSON.stringify(person),
             headers: {
                 "Content-Type": "application/json",

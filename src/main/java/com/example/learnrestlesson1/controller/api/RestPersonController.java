@@ -2,6 +2,7 @@ package com.example.learnrestlesson1.controller.api;
 
 import com.example.learnrestlesson1.dto.CarDTO;
 import com.example.learnrestlesson1.dto.PersonDTO;
+import com.example.learnrestlesson1.dto.UpdatePersonDTO;
 import com.example.learnrestlesson1.model.Car;
 import com.example.learnrestlesson1.model.Person;
 import com.example.learnrestlesson1.service.PersonService;
@@ -66,11 +67,11 @@ public class RestPersonController {
     }
 
     @PatchMapping("/{person-id}")
-    public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid PersonDTO personDTO,
+    public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid UpdatePersonDTO updatePersonDTO,
                                                    BindingResult bindingResult,
                                                    @PathVariable("person-id") Long personId) {
 
-        Person personToAll = convertToPerson(personDTO);
+        Person personToAll = convertToUpdatePerson(updatePersonDTO);
         if (bindingResult.hasErrors()) {
             ErrorsUtil.returnErrorsToClient(bindingResult);
         }
@@ -78,6 +79,7 @@ public class RestPersonController {
         return ResponseEntity.ok(HttpStatus.OK);
 
     }
+
 
     @PostMapping("/{person-id}/new_car_to_person")
     public ResponseEntity<HttpStatus> newCarToPerson(@RequestBody @Valid CarDTO carDTO,
@@ -126,6 +128,10 @@ public class RestPersonController {
 
     private Person convertToPerson(PersonDTO personDTO) {
         return modelMapper.map(personDTO, Person.class);
+    }
+
+    private Person convertToUpdatePerson(UpdatePersonDTO updatePersonDTO) {
+        return modelMapper.map(updatePersonDTO, Person.class);
     }
 
     private PersonDTO convertToPersonDTO(Person person) {

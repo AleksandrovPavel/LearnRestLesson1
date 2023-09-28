@@ -2,6 +2,7 @@ package com.example.learnrestlesson1.controller.api;
 
 import com.example.learnrestlesson1.dto.CarDTO;
 import com.example.learnrestlesson1.dto.PersonDTO;
+import com.example.learnrestlesson1.dto.UpdateCarDTO;
 import com.example.learnrestlesson1.model.Car;
 import com.example.learnrestlesson1.model.Person;
 import com.example.learnrestlesson1.service.CarService;
@@ -46,11 +47,11 @@ public class RestCarController {
     }
 
     @PatchMapping ("/{car-id}")
-    public ResponseEntity<HttpStatus> updateCar(@RequestBody @Valid CarDTO carDTO,
+    public ResponseEntity<HttpStatus> updateCar(@RequestBody @Valid UpdateCarDTO updateCarDTO,
                                                 BindingResult bindingResult,
                                                 @PathVariable("car-id") Long carId) {
 
-        Car carToAll = convertToCar(carDTO);
+        Car carToAll = convertToUpdateCar(updateCarDTO);
         if (bindingResult.hasErrors()) {
             ErrorsUtil.returnErrorsToClient(bindingResult);
         }
@@ -88,6 +89,10 @@ public class RestCarController {
 
     private Car convertToCar(CarDTO carDTO) {
         return modelMapper.map(carDTO, Car.class);
+    }
+
+    private Car convertToUpdateCar(UpdateCarDTO updateCarDTO) {
+        return modelMapper.map(updateCarDTO, Car.class);
     }
 
     private CarDTO convertToCarDTO(Car car) {
