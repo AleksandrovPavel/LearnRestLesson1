@@ -20,8 +20,13 @@ document.querySelector("form").addEventListener("submit", evt => {
             .then(response => {
                 return response.json()
             })
-            .then(response => console.log(response))
-          
+            .then(response => {
+                if(response === 'OK') {
+                    location.href = "http://localhost:8080/person"
+                }
+            })
+
+
 
     } catch (err) {
         form.style.color = "red";
@@ -29,6 +34,3 @@ document.querySelector("form").addEventListener("submit", evt => {
 
     }
 })
-
-
-

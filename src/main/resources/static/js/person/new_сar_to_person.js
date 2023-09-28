@@ -1,4 +1,5 @@
 document.querySelector("form").addEventListener("submit", evt => {
+    evt.preventDefault();
     let number = Number(id);
     const form = document.querySelector("form")
     let person = {
@@ -17,7 +18,11 @@ document.querySelector("form").addEventListener("submit", evt => {
             .then(response => {
                 return response.json()
             })
-            .then(response => console.log(response))
+            .then(response => {
+                if (response === 'OK') {
+                    location.href = "http://localhost:8080/person/" + number;
+                }
+            })
 
 
     } catch (err) {

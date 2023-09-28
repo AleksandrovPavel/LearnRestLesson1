@@ -36,7 +36,11 @@ document.querySelector("form").addEventListener("submit", evt => {
             .then(response => {
                 return response.json()
             })
-            .then(response => console.log(response))
+            .then(response => {
+                if (response === 'OK') {
+                    location.href = "http://localhost:8080/car/" + number;
+                }
+            })
 
 
     } catch (err) {
