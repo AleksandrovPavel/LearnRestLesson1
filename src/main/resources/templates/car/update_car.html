@@ -18,16 +18,13 @@
 <h4>Обновить данные автомобиля</h4>
 <br>
 <br>
-<form th:method="POST" th:action="@{/admin/car/{id}/car_update(id=${car.getId()})}" th:object="${car}">
-    <label for="model">Модель</label>
-    <input type="text" th:field="*{model}" id="model"/>
-    <div style="color:red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Model error</div>
-    <br/>
-    <laber for="series">Номер автомобиля</laber>
-    <input type="text" th:field="*{series}" id="lastName"/>
-    <div style="color:red" th:if="${#fields.hasErrors('series')}" th:errors="*{series}">Series error</div>
-    <br/>
-    <br/>
+<form>
+    <div>
+        <label for="model">Имя</label>
+        <input type="text" name="model" id="model" placeholder="Модель" autocomplete="off">
+    </div>
+    <br>
+    <br>
     <input type="submit" value="Обновить">
 </form>
 </body>

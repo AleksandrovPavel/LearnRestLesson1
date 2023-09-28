@@ -17,16 +17,14 @@
 <br>
 <h4>Автомобиль</h4>
 <br>
+<ul class="list-group list-group-flush" id="list"></ul>
 <br>
-
-<p th:text="${'ID: ' + car.getId()}">VALUE</p>
-<p th:text="${'Модель: ' + car.getModel()}">VALUE</p>
-<p th:text="${'Номер автомобиля: ' + car.getSeries()}">VALUE</p>
-<a th:href="@{/admin/car/{id}/transition(id=${car.getId()})}">Хозяин автомобиля</a>
-<br/>
-<br/>
-<a th:href="@{/admin/car/{id}/update(id=${car.getId()})}">Изменить</a>
-<br/>
-</form>
+<a th:href="@{/car/{id}/update_car(id=${carId})}">Изменить</a>
+<br>
+<br>
+<script th:inline="javascript">
+    let id = [[${carId}]];
+</script>
+<script src="/static/js/car/car_by_id_is.js"></script>
 </body>
 </html>

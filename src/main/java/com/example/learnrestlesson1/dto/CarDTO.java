@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Size;
 
 public class CarDTO {
 
+    private Long id;
     @NotEmpty(message = "Название автомобиля не должено быть пустым")
     @Size(min = 4, message = "Название автомобиля должно быть минимум 4 симола")
     private String model;
@@ -13,6 +14,13 @@ public class CarDTO {
     @Size(min = 7, message = "Серийный номер автомобиля должен быть минимум 7 символов")
     private String series;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getModel() {
         return model;

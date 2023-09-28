@@ -1,8 +1,8 @@
-const url = "http://localhost:8080/api/person";
-let placeholder = document.querySelector("#data-output");
+const urlPersons = "http://localhost:8080/api/person";
+let allPerson = document.querySelector("#data-output");
 
 async function start() {
-  fetch(url)
+  fetch(urlPersons)
     .then(function (response) {
       return response.json();
     })
@@ -29,7 +29,7 @@ async function start() {
             </tr>
       `;
       }
-      placeholder.innerHTML = out;
+      allPerson.innerHTML = out;
     })
     .catch((err) => {
       console.log("Error: " + err.message);
@@ -37,7 +37,7 @@ async function start() {
     });
 }
 
-placeholder.onclick = function (event) {
+allPerson.onclick = function (event) {
   const index = parseInt(event.target.dataset.index);
   const type = event.target.dataset.type;
 
