@@ -65,7 +65,7 @@ public class RestPersonController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PutMapping("/{person-id}")
+    @PatchMapping("/{person-id}")
     public ResponseEntity<HttpStatus> updatePerson(@RequestBody @Valid PersonDTO personDTO,
                                                    BindingResult bindingResult,
                                                    @PathVariable("person-id") Long personId) {

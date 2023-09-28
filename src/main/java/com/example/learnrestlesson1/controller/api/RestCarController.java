@@ -45,7 +45,7 @@ public class RestCarController {
                 HttpStatus.OK);
     }
 
-    @PutMapping ("/{car-id}")
+    @PatchMapping ("/{car-id}")
     public ResponseEntity<HttpStatus> updateCar(@RequestBody @Valid CarDTO carDTO,
                                                 BindingResult bindingResult,
                                                 @PathVariable("car-id") Long carId) {

@@ -18,7 +18,7 @@
 <h4>Обновить данные автомобиля</h4>
 <br>
 <br>
-<form>
+<form action="/car">
     <div>
         <label for="model">Имя</label>
         <input type="text" name="model" id="model" placeholder="Модель" autocomplete="off">
@@ -27,5 +27,9 @@
     <br>
     <input type="submit" value="Обновить">
 </form>
+<script th:inline="javascript">
+    let id = [[${carId}]];
+</script>
+<script src="/static/js/car/update_car_js.js"></script>
 </body>
 </html>

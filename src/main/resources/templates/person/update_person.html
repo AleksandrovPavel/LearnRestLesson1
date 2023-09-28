@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Обновление человека</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/>
 </head>
 <body>
 <br>
@@ -18,7 +18,7 @@
 <h4>Обновить данные человека</h4>
 <br>
 <br>
-<form>
+<form class="form" action="/person/${personId}" >
     <div>
         <label for="firstName">Имя</label>
         <input type="text" name="firstName" id="firstName" placeholder="Имя" autocomplete="off">
@@ -31,5 +31,9 @@
     <br>
     <input type="submit" value="Обновить">
 </form>
+<script th:inline="javascript">
+    let id = [[${personId}]];
+</script>
+<script src="/static/js/person/update_person_js.js"></script>
 </body>
 </html>
