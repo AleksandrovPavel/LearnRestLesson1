@@ -21,7 +21,7 @@
 <form action="/car">
     <div>
         <label for="model">Имя</label>
-        <input type="text" name="model" id="model" placeholder="Модель" autocomplete="off">
+        <input type="text" name="model" id="model" placeholder="Модель" minlength="3">
     </div>
     <br>
     <br>
@@ -31,5 +31,6 @@
     let id = [[${carId}]];
 </script>
 <script src="/static/js/car/update_car_js.js"></script>
+<script src="/static/js/validation/validation.js"></script>
 </body>
 </html>

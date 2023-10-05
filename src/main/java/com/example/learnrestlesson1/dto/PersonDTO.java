@@ -13,7 +13,7 @@ public class PersonDTO {
     private String firstName;
 
     @NotEmpty(message = "Фамилия не должна быть пустой")
-    @Size(min = 5, max = 25, message = "Длина фамилии должна составлять от 5 до максимального количества символов")
+    @Size(min = 5, max = 25, message = "Длина фамилии должна составлять от 5 до 25 символов")
     private String lastName;
 
     @Email(message = "Адрес электронной почты нужно ввести корректно")

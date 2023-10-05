@@ -1,16 +1,15 @@
 const urlCars = "http://localhost:8080/api/car";
 let tableGetInPersonCars = document.querySelector("#data-output");
-;
 
-async function start() {
-    fetch(urlPerson + "/" + number + "/get_in_person_cars")
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (cars) {
-            let out = "";
-            for (let car of cars) {
-                out += `
+
+fetch(urlPerson + "/" + number + "/get_in_person_cars")
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (cars) {
+        let out = "";
+        for (let car of cars) {
+            out += `
             <tr>
                 <td>${car.model}</td>
                 <td>${car.series}</td>
@@ -28,14 +27,13 @@ async function start() {
                 </td>
             </tr>
       `;
-            }
-            tableGetInPersonCars.innerHTML = out;
-        })
-        .catch((err) => {
-            console.log("Error: " + err.message);
-            console.log(err.response);
-        });
-}
+        }
+        tableGetInPersonCars.innerHTML = out;
+    })
+    .catch((err) => {
+        console.log("Error: " + err.message);
+        console.log(err.response);
+    });
 
 tableGetInPersonCars.onclick = function (event) {
     const index = parseInt(event.target.dataset.index);
@@ -57,4 +55,3 @@ tableGetInPersonCars.onclick = function (event) {
         location.reload();
     }
 };
-start();

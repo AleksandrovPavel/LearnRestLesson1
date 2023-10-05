@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Новый человек</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/>
-    <script src="/static/js/person/new_person_js.js" defer></script>
+    <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
 <body>
 <br>
@@ -18,21 +18,29 @@
 <br>
 <h4>Создать человека</h4>
 <br>
-<form >
-    <div>
-        <label for="firstName">Имя</label>
-        <input type="text" name="firstName" id="firstName" placeholder="Имя" autocomplete="off">
-    </div>
-    <div>
-        <label for="lastName">Фамилия</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Фамилия" autocomplete="off">
-    </div>
-    <div>
-        <label for="Email">Email</label>
-        <input type="email" name="email" id="Email" placeholder="Email" autocomplete="off">
-    </div>
-    <br>
-    <button class="btn" type="submit">Сохранить</button>
-</form>
+<div class="page">
+    <form action="" class="form" id="add-form">
+        <div class="input-box" id="firstName-input">
+            <label for="firstName">Имя</label>
+            <input data-min-length="2" data-max-length="25" class="input-field"
+                   id="firstName" type="text" name="firstName" placeholder="Имя">
+        </div>
+        <div class="input-box" id="lastName-input">
+            <label for="lastName">Фамилия</label>
+            <input data-min-length="5" data-max-length="25" class="input-field"
+                   id="lastName" type="text" name="lastName" placeholder="Фамилия">
+        </div>
+        <div class="input-box" id="email-input">
+            <label for="Email">Email</label>
+            <input class="input-field" id="Email" type="email" name="email"
+                   placeholder="Email" autocomplete="off">
+        </div>
+        <br>
+        <button class="btn" type="submit">Сохранить</button>
+
+    </form>
+</div>
+<script src="/static/js/person/new_person_js.js"></script>
+<script src="/static/js/validation/validation.js"></script>
 </body>
 </html>

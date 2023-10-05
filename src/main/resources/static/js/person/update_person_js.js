@@ -15,39 +15,44 @@ async function start() {
             console.log(err.response);
         });
 }
+
 start();
 
 document.querySelector("form").addEventListener("submit", evt => {
+
     evt.preventDefault();
     const form = document.querySelector("form")
+
     let person = {
         firstName: form.querySelector("[name='firstName']").value,
         lastName: form.querySelector("[name='lastName']").value,
     }
 
-    try {
-        fetch(url + "/" + number, {
-            method: "PATCH",
-            body: JSON.stringify(person),
-            headers: {
-                "Content-Type": "application/json",
-            },
+    fetch(url + "/" + number, {
+        method: "PATCH",
+        body: JSON.stringify(person),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(response => {
+            return response.json()
         })
-            .then(response => {
-                return response.json()
-            })
-            .then(response => {
-                if(response === 'OK') {
-                    location.href = "http://localhost:8080/person/" + number;
-                }
-            })
+        .then(response => {
+            if (response === 'OK') {
+                location.href = "http://localhost:8080/person/" + number;
+
+            } else {
+                form.style.color = "red";
+                form.innerHTML = response.message;
+            }
+        })
+        .catch((err) => {
+            console.log("Error: " + err.message);
+            console.log(err.response);
+        });
 
 
-    } catch (err) {
-        form.style.color = "red";
-        form.innerHTML = err.message;
-
-    }
 })
 
 

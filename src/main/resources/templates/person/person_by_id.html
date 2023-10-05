@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Человек</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/>
-
 </head>
 <body>
 <br>
@@ -18,9 +17,9 @@
 <br>
 <h4>Человек</h4>
 <br>
-    <ul class="list-group list-group-flush" id="list"></ul>
+<ul class="list-group list-group-flush" id="list"></ul>
 <br>
-    <a th:href="@{/person/{id}/update_person(id=${personId})}">Изменить</a>
+<a th:href="@{/person/{id}/update_person(id=${personId})}">Изменить</a>
 <br>
 <br>
 <h4>Автомобили человека</h4>
@@ -41,25 +40,29 @@
 <br>
 <h4>Добавить автомобиль человеку</h4>
 <br>
-<form action="">
-    <div>
-        <label for="model">Модель</label>
-        <input type="text" name="model" id="model" placeholder="Модель" autocomplete="off">
-    </div>
-    <div>
-        <label for="series">Серийный номер</label>
-        <input type="text" name="series" id="series" placeholder="Серийный номер" autocomplete="off">
-    </div>
-    <br>
-    <button class="btn" type="submit">Сохранить</button>
-</form>
-
+<div class="page">
+    <form action="" class="form" id="add-from">
+        <div class="input-box" id="model-input">
+            <label for="model">Модель</label>
+            <input data-min-length="3" data-max-length="25" class="input-field"
+                   id="model" type="text" name="model" placeholder="Модель">
+        </div>
+        <div class="input-box" id="series-input">
+            <label for="series">Серийный номер</label>
+            <input data-min-length="6" data-max-length="25" class="input-field"
+                   id="series" type="text" name="series" placeholder="Серийный номер">
+        </div>
+        <br>
+        <button class="btn" type="submit">Сохранить</button>
+    </form>
+</div>
 
 <script th:inline="javascript">
-    let id = [[${personId}]];
+let id = [[${personId}]];
 </script>
 <script src="/static/js/person/person_by_id_js.js"></script>
 <script src="/static/js/person/get_in_person_cars.js"></script>
 <script src="/static/js/person/new_сar_to_person.js"></script>
+<script src="/static/js/validation/validation.js"></script>
 </body>
 </html>

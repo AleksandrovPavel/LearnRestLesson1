@@ -7,11 +7,11 @@ public class CarDTO {
 
     private Long id;
     @NotEmpty(message = "Название автомобиля не должено быть пустым")
-    @Size(min = 4, message = "Название автомобиля должно быть минимум 4 симола")
+    @Size(min = 3, message = "Название автомобиля должно быть минимум 3 симола")
     private String model;
 
     @NotEmpty(message = "Серийный номер автомобиля не должен быть пустым")
-    @Size(min = 7, message = "Серийный номер автомобиля должен быть минимум 7 символов")
+    @Size(min = 6, message = "Серийный номер автомобиля должен быть минимум 6 символов")
     private String series;
 
     public Long getId() {

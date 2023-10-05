@@ -21,11 +21,11 @@
 <form action="/person/${personId}" >
     <div>
         <label for="firstName">Имя</label>
-        <input type="text" name="firstName" id="firstName" placeholder="Имя" autocomplete="off">
+        <input type="text" name="firstName" id="firstName" placeholder="Имя" minlength="2" maxlength="25">
     </div>
     <div>
         <label for="lastName">Фамилия</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Фамилия" autocomplete="off">
+        <input type="text" name="lastName" id="lastName" placeholder="Фамилия" minlength="5" maxlength="25">
     </div>
     <br>
     <br>
@@ -35,5 +35,6 @@
     let id = [[${personId}]];
 </script>
 <script src="/static/js/person/update_person_js.js"></script>
+<script src="/static/js/validation/validation.js"></script>
 </body>
 </html>
