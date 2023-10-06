@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Обновление человека</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"/>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 <br>
@@ -18,19 +19,23 @@
 <h4>Обновить данные человека</h4>
 <br>
 <br>
-<form action="/person/${personId}" >
-    <div>
-        <label for="firstName">Имя</label>
-        <input type="text" name="firstName" id="firstName" placeholder="Имя" minlength="2" maxlength="25">
-    </div>
-    <div>
-        <label for="lastName">Фамилия</label>
-        <input type="text" name="lastName" id="lastName" placeholder="Фамилия" minlength="5" maxlength="25">
-    </div>
-    <br>
-    <br>
-    <input type="submit" value="Обновить">
-</form>
+<div class="page">
+    <form action="" class="form" id="add-form">
+        <div class="input-box" id="firstName-input">
+            <label for="firstName">Имя</label>
+            <input data-min-length="2" data-max-length="25" class="input-field"
+                   id="firstName" type="text" name="firstName" placeholder="Имя">
+        </div>
+        <div class="input-box" id="lastName-input">
+            <label for="lastName">Фамилия</label>
+            <input data-min-length="5" data-max-length="25" class="input-field"
+                   id="lastName" type="text" name="lastName" placeholder="Фамилия">
+        </div>
+        <br>
+        <br>
+        <input type="submit" value="Обновить">
+    </form>
+</div>
 <script th:inline="javascript">
     let id = [[${personId}]];
 </script>
