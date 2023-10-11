@@ -22,9 +22,29 @@
 <a th:href="@{/car/{id}/update_car(id=${carId})}">Изменить</a>
 <br>
 <br>
+<br>
+<h4>Хозяин автомобиля</h4>
+<br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Перейти</th>
+        </tr>
+        </thead>
+        <tbody id="data-output"></tbody>
+    </table>
+</div>
+<br>
+<br>
+<br>
 <script th:inline="javascript">
     let id = [[${carId}]];
 </script>
 <script src="/static/js/car/car_by_id_is.js"></script>
+<script src="/static/js/car/person_of_car_js.js"></script>
 </body>
 </html>
