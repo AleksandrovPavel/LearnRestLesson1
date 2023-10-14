@@ -51,13 +51,6 @@ public class CarServiceImpl implements CarService {
         carRepository.delete(carDelete);
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public Long idPerson(Long carId) {
-        Car car = carRepository.findById(carId)
-                .orElseThrow(CarNotFoundException::new);
-        return car.getPerson().getId();
-    }
 
     @Override
     @Transactional(readOnly = true)

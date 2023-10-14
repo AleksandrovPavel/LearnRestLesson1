@@ -16,8 +16,6 @@ public interface CarService {
 
     void deleteCar(Long carId);
 
-    Long idPerson(Long carId);
-
     Person getInCarPerson(Long carId);
 
     Optional<Car> findBySeries(String series);

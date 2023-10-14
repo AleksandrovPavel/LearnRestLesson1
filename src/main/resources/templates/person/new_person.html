@@ -32,12 +32,36 @@
         </div>
         <div class="input-box" id="email-input">
             <label for="Email">Email</label>
-            <input class="input-field" id="Email" type="email" name="email"
+            <input class="input-field" id="Email" type="email" name="username"
                    placeholder="Email" autocomplete="off">
         </div>
+        <div class="input-box" id="password-input">
+            <label for="password">Пароль</label>
+            <input class="input-field" id="password" type="password" name="password"
+                   placeholder="Пароль" autocomplete="off">
+        </div>
         <br>
-        <button class="btn" type="submit">Сохранить</button>
-
+        <form name="roles">
+            <fieldset>
+                <legend>Установить Права</legend>
+                <br>
+                <div>
+                    <label>
+                        <input type="radio" id="user" name="role" value="ROLE_USER"/>
+                        User
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" id="admin" name="role" value="ROLE_ADMIN"/>
+                        Admin
+                    </label>
+                </div>
+            </fieldset>
+            <br>
+            <br>
+            <button class="btn" type="submit">Сохранить</button>
+        </form>
     </form>
 </div>
 <br>

@@ -24,7 +24,7 @@ public class PersonValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
 
-        if (personService.findByEmail(person.getEmail()).isPresent()) {
+        if (personService.findByUsername(person.getUsername()).isPresent()) {
             errors.rejectValue("email", "Адрес электронной почты уже существует");
         }
     }

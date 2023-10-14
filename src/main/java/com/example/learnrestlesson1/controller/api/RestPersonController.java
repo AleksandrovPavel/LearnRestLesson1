@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,14 +27,17 @@ public class RestPersonController {
     private final PersonService personService;
     private final ModelMapper modelMapper;
     private final PersonValidator personValidator;
+    private final PasswordEncoder passwordEncoder;
+
     private final CarValidator carValidator;
 
     public RestPersonController(PersonService personService,
                                 ModelMapper modelMapper,
-                                PersonValidator personValidator, CarValidator carValidator) {
+                                PersonValidator personValidator, PasswordEncoder passwordEncoder, CarValidator carValidator) {
         this.personService = personService;
         this.modelMapper = modelMapper;
         this.personValidator = personValidator;
+        this.passwordEncoder = passwordEncoder;
         this.carValidator = carValidator;
     }
 
@@ -46,6 +51,7 @@ public class RestPersonController {
     }
 
     @GetMapping("/{person-id}")
+    @PreAuthorize(value = "hasRole('ROLE_USER')" + "and authentication.principal.equals(#userId) ")
     public ResponseEntity<PersonDTO> getPersonById(@PathVariable("person-id") Long personId) {
         return new ResponseEntity<>(convertToPersonDTO(personService.getPersonById(personId)),
                 HttpStatus.OK);
@@ -127,6 +133,7 @@ public class RestPersonController {
     }
 
     private Person convertToPerson(PersonDTO personDTO) {
+        personDTO.setPassword(passwordEncoder.encode(personDTO.getPassword()));
         return modelMapper.map(personDTO, Person.class);
     }
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Человек</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+</head>
+<body>
+<br>
+<a href="/logout">Выход</a>
+<br>
+<br>
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/admin/person">Ко всем людям</a>
+    <br>
+    <a href="/admin/car">Ко всем автомобилям</a>
+</div>
+<br>
+<br>
+<h4>Человек</h4>
+<ul class="list-group list-group-flush" id="list"></ul>
+<br>
+<br>
+<h4>Автомобили человека</h4>
+<br>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Модель</th>
+            <th>Серийный номер</th>
+        </tr>
+        </thead>
+        <tbody id="data-output"></tbody>
+    </table>
+</div>
+<br>
+<script th:inline="javascript">
+    let id = [[${personId}]];
+</script>
+<script src="/static/js/person/person_by_id_js.js"></script>
+<script src="/static/js/user/person_has_cars_js.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/car")
+@RequestMapping("/admin/car")
 public class CarController {
 
     @GetMapping

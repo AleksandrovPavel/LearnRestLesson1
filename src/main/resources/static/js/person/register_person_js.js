@@ -1,20 +1,13 @@
-const url = "http://localhost:8080/api/person";
+const register = "http://localhost:8080/api/register";
 let firstName = document.querySelector("#firstName-input");
 let lastName = document.querySelector("#lastName-input");
 let email = document.querySelector("#email-input");
-let role;
 
 
-document.getElementById("add-form").addEventListener("submit", function (evt) {
+document.getElementById("add-form").addEventListener("submit",
+    function (evt) {
 
     evt.preventDefault();
-
-    let radioBtn = document.roles.role;
-    let role = document.querySelector("input[name='role']:checked").value;
-    radioBtn.forEach(radio => {
-        radio.addEventListener("change", role)
-    })
-
 
     if (validation(this) == true) {
 
@@ -25,10 +18,9 @@ document.getElementById("add-form").addEventListener("submit", function (evt) {
             lastName: form.querySelector("[name='lastName']").value,
             username: form.querySelector("[name='username']").value,
             password: form.querySelector("[name='password']").value,
-            roles: form.querySelector(role).value,
         }
 
-        fetch(url, {
+        fetch(register, {
             method: "POST",
             body: JSON.stringify(person),
             headers: {
@@ -40,7 +32,7 @@ document.getElementById("add-form").addEventListener("submit", function (evt) {
             })
             .then(response => {
                 if (response === 'OK') {
-                    location.href = "http://localhost:8080/person"
+                    location.href = "http://localhost:8080/auth/login"
                 } else {
                     email.style.color = "red";
                     email.append(response.message.replace("email - ", "").replace(";", ""));

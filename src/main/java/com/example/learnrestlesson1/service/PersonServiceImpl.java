@@ -6,6 +6,8 @@ import com.example.learnrestlesson1.repositories.CarRepository;
 import com.example.learnrestlesson1.repositories.PersonRepository;
 import com.example.learnrestlesson1.util.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,8 +49,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Person> findByEmail(String email) {
-        return personRepository.findByEmail(email);
+    public Optional<Person> findByUsername(String Username) {
+        return personRepository.findByUsername(Username);
     }
 
     @Override
@@ -87,5 +89,15 @@ public class PersonServiceImpl implements PersonService {
         carRepository.save(car);
     }
 
+    @Override
+    public Optional<Person> findUserByUsername(String username) {
+        return personRepository.findByUsername(username);
+    }
 
+    @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return personRepository.findByUsername(username).orElseThrow(() ->
+                new UsernameNotFoundException("User doesn't exists"));
+    }
 }

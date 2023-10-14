@@ -1,8 +1,12 @@
 package com.example.learnrestlesson1.dto;
 
+import com.example.learnrestlesson1.model.Role;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+
+import java.util.Set;
 
 public class PersonDTO {
 
@@ -18,7 +22,13 @@ public class PersonDTO {
 
     @Email(message = "Адрес электронной почты нужно ввести корректно")
     @NotEmpty(message = "Адрес электронной почты не должен быть пустым")
-    private String email;
+    private String username;
+
+    @Size(min = 4, message = "Длина пароля должна составлять от 5 символов")
+    @NotEmpty(message = "Пароль не должен быть пустым")
+    private String password;
+
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -44,11 +54,27 @@ public class PersonDTO {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
